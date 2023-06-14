@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function getComputerChoice() {
+        let rand = (Math.floor(Math.random() * 3))
+
+        if (rand == 0) {
+            return 'Rock'
+        } else if (rand == 1) {
+            return 'Paper'
+        } else if (rand == 2) {
+            return 'Scissors'
+        } else {
+            return 'ERROR'
+        }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase()
+        computerSelection = computerSelection.toLowerCase()
+        if (playerSelection == 'rock') {
+            if (computerSelection == 'scissors') {
+                console.log('You Win! Rock beats Scissors') 
+                return 'player';
+            }
+            if (computerSelection == 'rock') {
+                console.log('Tie! Rock equals Rock');               
+            }
+            if (computerSelection == 'paper') {
+                console.log('You Lose! Paper beats Rock');
+                return 'computer';
+            }
+        } else if (playerSelection == 'scissors') {
+            if (computerSelection == 'scissors') {
+                console.log('Tie! Scissors equals Scissors');
+            }
+            if (computerSelection == 'rock') {
+                console.log('You Lose! Rock beats Scissors');
+                return 'computer';
+            }
+            if (computerSelection == 'paper') {
+                console.log('Win! Scissors beats Paper');
+                return 'player';
+            }
+        } else {
+            if (computerSelection == 'scissors') {
+                console.log('You Lose! Scissors beats Paper');
+                return 'computer';
+            }
+            if (computerSelection == 'rock') {
+                console.log('Win! Paper beats Rock');
+                return 'player';
+            }
+            if (computerSelection == 'paper') {
+                console.log('Tie Paper equals Paper');
+            }
+        }
+    }
+
+    function game() {
+        /*Loop through until 5 game have been played and return
+            the results to the user regarding if you won*/
+            //Score keeping to determine who wins after 5 total games
+            let playerScore = 0;
+            let computerScore = 0;
+
+            while(playerScore < 4 || computerScore < 4){
+                const computerSelection = getComputerChoice();
+                let playerSelection = prompt("Enter in Rock,Paper, or Scissors:")
+                let score = playRound(playerSelection, computerSelection);
+                if (score == 'computer'){
+                    computerScore++;
+                }else if(score == 'player'){
+                    playerScore++;
+                }
+                console.log("Player Score: ", playerScore, ":", " Computer Score: ", computerScore);
+            }
+            if(playerScore > computerScore){
+                console.log("PLAYER WINS!");
+            }else if(playerScore < computerScore){
+                console.log("COMPUTER WINS!");
+            }
+    }
+
+    game();
+
+</script>
+</html>
